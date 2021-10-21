@@ -46,7 +46,7 @@ select_browser() {
 }
 
 check_services() {
-	[ ! -x /sbin/rc ] && exit
+	[ ! -x /sbin/rc ] && echo "Setup completed. To launch desktop, do:" && echo "  DISPLAY=<display> dbus-launch startplasma-x11" && exit
 	echo "Add sddm service during startup? [y/n]: " confirm
 	[ $confirm != "y" ] && exit
 	rc-update add sddm
