@@ -28,6 +28,7 @@ select_flavor() {
 	esac
 
 	apk add -i $PACKAGES
+	[ $? != 0 ] && exit 6
 	check_services
 }
 
@@ -39,6 +40,8 @@ select_browser() {
 	esac
 
 	apk add -i $PACKAGES
+	[ $? != 0 ] && exit 6
+	check_services
 }
 
 check_services() {
