@@ -28,19 +28,19 @@ select_flavor() {
 	esac
 
 	apk add -i $PACKAGES
-	[ $? != 0 ] && exit 6
+	[ $? != 0 ] && select_flavor
 	check_services
 }
 
 select_browser() {
 	read -p "Select your browser [firefox, chromium]: " browser
 	case $browser in
-		firefox|chromium)  PACKAGES="plasma konsole dolphin $BROWSER" ;;
+		firefox|chromium)  PACKAGES="plasma konsole dolphin $browser" ;;
 		*)  select_flavor ;;
 	esac
 
 	apk add -i $PACKAGES
-	[ $? != 0 ] && exit 6
+	[ $? != 0 ] && select_flavor
 	check_services
 }
 
