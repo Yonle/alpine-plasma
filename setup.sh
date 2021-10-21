@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-[ $(id -u) = 0 ] && echo "Please run this script under root."
+[ $(id -u) != 0 ] && echo "Please run this script under root." && exit 6
 [ -x /sbin/setup-xorg-base ] && setup-xorg-base
 
 show_help() {
