@@ -14,12 +14,11 @@ show_help() {
 
 select_operation() {
 	echo "Select your operation:"
-	echo "a) Install"
-	echo "b) Uninstall"
+	echo "1) Install	2) Uninstall"
 	read -p "Operation: " OPERATION
 	case $OPERATION in
-		a)  MET="add" ;;
-		b)  MET="del" ;;
+		1)  MET="add" ;;
+		2)  MET="del" ;;
 		*)  select_operation ;;
 	esac
 	export MET && select_flavor
