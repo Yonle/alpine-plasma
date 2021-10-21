@@ -29,5 +29,5 @@ browser:
   chromium: 1576 MiB
   firefox: 1584 MiB
 
-full: 2378 MiB
+full: 2206 MiB
 ```
