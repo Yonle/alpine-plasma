@@ -12,22 +12,35 @@ show_help() {
 	select_flavor
 }
 
+select_operation() {
+	echo "Select your operation:"
+	echo "a) Install"
+	echo "b) Uninstall"
+	read -p "Operation: " OPERATION
+	case $OPERATION in
+		a)  MET="add" ;;
+		b)  MET="del" ;;
+		*)  select_operation ;;
+	esac
+	export MET && select_flavor
+}
+
 select_flavor() {
 	echo "Select the following KDE Plasma Desktop Flavor:"
 	echo "nano, lite, common, browser, full"
-	read -p "Select your Flavor [? for details]: " flavor
+	read -p "Select your Flavor [? for details, empty to back]: " flavor
 
 	case $flavor in
 		nano)  PACKAGES="plasma-desktop dbus-x11" ;;
 		lite)  PACKAGES="plasma" ;;
 		common)  PACKAGES="plasma konsole dolphin" ;;
 		browser)  select_browser ;;
-		full)  PACKAGES="plasma kde-applications firefox" ;;
+		full)  PACKAGES="plasma kde-applications konqueror" ;;
 		?)  show_help ;;
-		*)  select_flavor ;;
+		*)  select_operation ;;
 	esac
 
-	apk add -i $PACKAGES
+	apk $MET -i $PACKAGES
 	[ $? != 0 ] && select_flavor
 	check_services
 }
@@ -40,12 +53,13 @@ select_browser() {
 		*)  select_flavor ;;
 	esac
 
-	apk add -i $PACKAGES
+	apk $MET -i $PACKAGES
 	[ $? != 0 ] && select_browser
 	check_services
 }
 
 check_services() {
+	[ $MET != "add" ] && exit
 	[ ! -x /sbin/rc ] && echo "Setup completed. To launch desktop, do:" && echo "  DISPLAY=<display> dbus-launch startplasma-x11" && exit
 	echo "Add sddm service during startup? [y/n]: " confirm
 	[ $confirm != "y" ] && exit
@@ -55,4 +69,4 @@ check_services() {
 	exit
 }
 
-select_flavor
+select_operation
