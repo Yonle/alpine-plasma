@@ -5,7 +5,7 @@ A simple KDE plasma setup script that can used for both Alpinelinux system and c
 Just do `sh setup.sh`. Or,
 
 ```sh
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/Yonle/alpine-plasma/master/setup.sh)"
+sh -c "$(curl -fsSL git.io/alpine-plasma)"
 ```
 
 
