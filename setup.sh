@@ -27,7 +27,8 @@ select_flavor() {
 		*)  select_flavor ;;
 	esac
 
-	prompt_install $PACKAGES
+	apk add -i $PACKAGES
+	check_services
 }
 
 select_browser() {
@@ -36,16 +37,8 @@ select_browser() {
 		firefox|chromium)  PACKAGES="plasma konsole dolphin $BROWSER" ;;
 		*)  select_flavor ;;
 	esac
-}
 
-prompt_install() {
-	echo "The following package will installed:"
-	echo $@
-	read -p "Proceed installation? [y/n]: " confirm
-	[ $confirm != "y" ] && exit
-	apk add $@
-
-	check_services
+	apk add -i $PACKAGES
 }
 
 check_services() {
