@@ -23,8 +23,11 @@ nano: 1129 MiB
 lite: 1393 MiB
 common: 1398 MiB
 browser:
-  firefox: 1584 MiB
+  konqueror: 1403 MiB
+  falkon: 1404 MiB
+  aura-browser: 1418 MiB
   chromium: 1576 MiB
+  firefox: 1584 MiB
 
 full: 2378 MiB
 ```
