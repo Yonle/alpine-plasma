@@ -18,7 +18,7 @@ select_flavor() {
 	read -p "Select your Flavor [? for details]: " flavor
 
 	case $flavor in
-		nano)  PACKAGES="plasma-desktop" ;;
+		nano)  PACKAGES="plasma-desktop dbus-x11" ;;
 		lite)  PACKAGES="plasma" ;;
 		common)  PACKAGES="plasma konsole dolphin" ;;
 		browser)  select_browser ;;
